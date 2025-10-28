@@ -56,3 +56,15 @@ dkms.conf
 
 # Specific
 miniRT
+
+# Archivos de depuración
+*.log
+
+# Archivos del sistema y del editor
+*.swp
+*.swo
+*.tmp
+*.bak
+.vscode/
+.idea/
+.DS_Store
