@@ -6,7 +6,7 @@
 #    By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/28 14:06:40 by jescuder          #+#    #+#              #
-#    Updated: 2025/10/28 15:13:00 by jescuder         ###   ########.fr        #
+#    Updated: 2025/10/30 09:50:45 by jescuder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS_PATH = src/
 OBJS_PATH = obj/
 INCS_PATH = inc/
 LIBFT_PATH = $(INCS_PATH)libft/
+MLX_PATH = $(INCS_PATH)minilibx-linux/
 
 # Source files
 SRCS = $(wildcard $(SRCS_PATH)*.c)
@@ -48,28 +49,40 @@ OBJS = $(patsubst $(SRCS_PATH)%.c, $(OBJS_PATH)%.o, $(SRCS))
 # Include files
 INCS = $(INCS_PATH)$(NAME).h
 
+# Libraries
+LIBFT = $(LIBFT_PATH)libft.a
+MLX = $(MLX_PATH)libmlx.a
+
 # Compiler flags to link libraries
-LFLAGS = -L$(LIBFT_PATH) -lft -lm
+LFLAGS = -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
 
 # Prevents all commands from showing in the shell.
 .SILENT:
 
-.PHONY: all libft clean fclean re norm
+.PHONY: all libft mlx clean fclean re norm
 
-all: libft $(NAME)
+all: libft mlx $(NAME)
 
 # Runs the libft Makefile, which will compile libft.a if its dependencies have changed.
 libft:
 	$(MAKE) -C $(LIBFT_PATH) --no-print-directory
 
+# Runs the mlx Makefile, which will compile libmlx.a if its dependencies have changed.
+mlx:
+	$(MAKE) -C $(MLX_PATH) --no-print-directory
+
 # Compiles the mandatory part.
-$(NAME): $(LIBFT_PATH)libft.a $(OBJS_PATH) $(OBJS)
+$(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 	echo "$(GREEN)[$(NAME)] executable compiled.$(DEF_COLOR)"
 
 # Compiles libft.a if it's missing.
-$(LIBFT_PATH)libft.a:
+$(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH) --no-print-directory
+
+# Compiles libmlx.a if it's missing.
+$(MLX):
+	$(MAKE) -C $(MLX_PATH) --no-print-directory
 
 # Creates the objects directory if it doesn't exist.
 $(OBJS_PATH):
@@ -78,13 +91,14 @@ $(OBJS_PATH):
 
 # Compiles C source files into object files.
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INCS)
-	$(CC) $(CFLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCS_PATH) -I $(LIBFT_PATH) -I $(MLX_PATH) -c $< -o $@
 	echo "$(CYAN)[$@] object compiled.$(DEF_COLOR)"
 
 clean:
 	$(REMOVE) $(OBJS_PATH)
 	echo "$(MAGENTA)[$(NAME)] objects directory and files cleaned.$(DEF_COLOR)"
 	$(MAKE) clean -C $(LIBFT_PATH) --no-print-directory
+	$(MAKE) clean -C $(MLX_PATH) --no-print-directory
 
 fclean:
 	$(REMOVE) $(OBJS_PATH)
@@ -92,8 +106,9 @@ fclean:
 	$(REMOVE) $(NAME)
 	echo "$(BLUE)[$(NAME)] executable cleaned.$(DEF_COLOR)"
 	$(MAKE) fclean -C $(LIBFT_PATH) --no-print-directory
+	$(MAKE) fclean -C $(MLX_PATH) --no-print-directory
 
 re: fclean all
 
 norm:
-	norminette $(SRCS_PATH) $(INCS_PATH)
+	norminette $(SRCS_PATH) $(INCS) $(LIBFT_PATH)
