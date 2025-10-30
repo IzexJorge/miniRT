@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/29 15:28:15 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:29:12 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "libft.h"
+# include "mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -85,7 +86,16 @@ typedef struct	s_scene
 	t_cylinder	*cylinders;
 }				t_scene;
 
-int	main(int argc, char *argv[]);
-int	ft_parse_scene(char *filename, t_scene *scene);
+typedef struct	s_mlx_data
+{
+	void	*mlx_ptr;
+	void	*img_ptr;
+	void	*win_ptr;
+}				t_mlx_data;
+
+int		main(int argc, char *argv[]);
+int		ft_parse_scene(char *filename, t_scene *scene);
+int		ft_render_image(t_scene *scene, void *img_ptr);
+int		ft_show_image(void *mlx_ptr, void *img_ptr);
 
 #endif
