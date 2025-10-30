@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/29 16:28:23 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/10/30 10:27:21 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static int	ft_validate_scene(t_scene *scene)
 
 static int	ft_parse_line(char *line, t_scene *scene)
 {
-	
+	if (line[0] == '\0')
+		return (1);
+	(void) scene;
+	return (0);
 }
 
 int	ft_parse_scene(char *filename, t_scene *scene)

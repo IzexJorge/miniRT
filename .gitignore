@@ -68,3 +68,8 @@ miniRT
 .vscode/
 .idea/
 .DS_Store
+
+# Makefile
+*.gen
+mlx-test
+

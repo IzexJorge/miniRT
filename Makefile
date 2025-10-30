@@ -6,7 +6,7 @@
 #    By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/28 14:06:40 by jescuder          #+#    #+#              #
-#    Updated: 2025/10/30 09:50:45 by jescuder         ###   ########.fr        #
+#    Updated: 2025/10/30 10:18:02 by jescuder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
 
 # Compiler flags to link libraries
-LFLAGS = -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
+LFLAGS = -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -lXext -lX11 -lbsd -lm
 
 # Prevents all commands from showing in the shell.
 .SILENT:
@@ -106,7 +106,7 @@ fclean:
 	$(REMOVE) $(NAME)
 	echo "$(BLUE)[$(NAME)] executable cleaned.$(DEF_COLOR)"
 	$(MAKE) fclean -C $(LIBFT_PATH) --no-print-directory
-	$(MAKE) fclean -C $(MLX_PATH) --no-print-directory
+	$(MAKE) clean -C $(MLX_PATH) --no-print-directory
 
 re: fclean all
 
