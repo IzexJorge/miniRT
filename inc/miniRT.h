@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/31 00:37:59 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:01:44 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ typedef struct	s_coord
 
 typedef struct	s_color
 {
-	float r;
-	float g;
-	float b;
+	int	r;
+	int	g;
+	int	b;
 }				t_color;
 
 typedef struct	s_camera
 {
 	t_coord	coord;
 	t_coord	orientation;
-	int		field_of_view;//TODO Asegurarse de si tiene que ser entero o decimal.
+	int		field_of_view;
 }				t_camera;
 
 typedef struct	s_ambient
@@ -49,31 +49,31 @@ typedef struct	s_ambient
 
 typedef struct	s_light
 {
-	float	ratio;
 	t_coord	coord;
+	float	ratio;
 }				t_light;
 
 typedef struct	s_plane
 {
 	t_coord	coord;
-	t_color	color;
 	t_coord	orientation;
+	t_color	color;
 }				t_plane;
 
 typedef struct	s_sphere
 {
 	t_coord	coord;
-	t_color	color;
 	float	diameter;
+	t_color	color;
 }				t_sphere;
 
 typedef struct	s_cylinder
 {
 	t_coord	coord;
-	t_color	color;
+	t_coord	orientation;
 	float	diameter;
 	float	height;
-	t_coord	orientation;
+	t_color	color;
 }				t_cylinder;
 
 typedef struct	s_scene
@@ -81,9 +81,9 @@ typedef struct	s_scene
 	t_camera	*camera;
 	t_ambient	*ambient;
 	t_light		*light;
-	t_plane		*planes;
-	t_sphere	*spheres;
-	t_cylinder	*cylinders;
+	t_list		*planes;
+	t_list		*spheres;
+	t_list		*cylinders;
 }				t_scene;
 
 typedef struct	s_mlx_data
