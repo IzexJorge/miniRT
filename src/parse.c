@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/31 20:49:06 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/01 15:38:34 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 static int	ft_parse_field_of_view(int *field_of_view, char *input)
 {
-	int	value;
-
-	value = ft_atoi(input);
-	if (value >= 0 && value <= 180)
-	{
-		*field_of_view = value;
-		return (1);
-	}
-	return (0);
+	*field_of_view = ft_atoi(input);
+	if (*field_of_view < 0 || *field_of_view > 180)
+		return (ft_error("Field of view value is out of range."), 0);
+	return (1);
 }
 
 static int	ft_parse_camera(char **line_input, t_scene *scene)
 {
 	t_camera	*camera;
-	char		**line_input;
 
 	if (scene->camera)
-		return (ft_error("There's more than one camera.", STDERR_FILENO), 0);
+		return (ft_error("Cannot have more than one camera."), 0);
 	if (ft_str_arraylen(line_input) < 4)
-		return (ft_error("Not enough camera info.", STDERR_FILENO), 0);
+		return (ft_error("Not enough camera info."), 0);
 	if (ft_str_arraylen(line_input) > 4)
-		return (ft_error("Too much camera info.", STDERR_FILENO), 0);
+		return (ft_error("Too much camera info."), 0);
 	camera = malloc(sizeof(t_camera));
 	if (camera == NULL)
 		return (perror("error"), 0);
@@ -68,7 +62,7 @@ static int	ft_parse_line(char **line_input, t_scene *scene)
 		return (ft_parse_sphere(line_input, scene));
 	else if (ft_strcmp(identifier, "cy"))
 		return (ft_parse_cylinder(line_input, scene));
-	ft_error("Incorrect line identifier.", STDERR_FILENO);
+	ft_error("Incorrect line identifier.");
 	return (0);
 }
 
@@ -80,17 +74,17 @@ static int	ft_validate_scene(t_scene *scene)
 	if (scene->camera == NULL)
 	{
 		valid = 0;
-		ft_error("The camera is missing.", STDERR_FILENO);
+		ft_error("The camera is missing.");
 	}
 	if (scene->ambient == NULL)
 	{
 		valid = 0;
-		ft_error("The ambient lighting is missing.", STDERR_FILENO);
+		ft_error("The ambient lighting is missing.");
 	}
 	if (scene->light == NULL)
 	{
 		valid = 0;
-		ft_error("The light is missing.", STDERR_FILENO);
+		ft_error("The light is missing.");
 	}
 	return (valid);
 }

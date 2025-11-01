@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:06:09 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/31 19:35:06 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/01 15:35:31 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	ft_free_scene(t_scene *scene)
 	free(scene->camera);
 	free(scene->ambient);
 	free(scene->light);
-	ft_lstclear(scene->planes, free);
-	ft_lstclear(scene->spheres, free);
-	ft_lstclear(scene->cylinders, free);
+	ft_lstclear(&scene->planes, free);
+	ft_lstclear(&scene->spheres, free);
+	ft_lstclear(&scene->cylinders, free);
 }
 
 static void	ft_free_mlx(void *mlx_ptr, void *img_ptr)
@@ -64,7 +64,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_error("The only argument must be a .rt file.", STDERR_FILENO);
+		ft_error("The only argument must be a .rt file.");
 		return (1);
 	}
 	ft_memset(&scene, 0, sizeof(t_scene));
