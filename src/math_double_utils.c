@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_add_front.c                              :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/31 20:00:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/05 19:31:06 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/03 20:06:33 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/03 20:43:04 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-t_list	*ft_lstnew_add_front(t_list **lst, void *content)
+int	ft_is_zero(double a)
 {
-	t_list	*new;
+	return (fabs(a) < FT_EPSILON);
+}
 
-	if (content == NULL)
-		return (NULL);
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	new->next = *lst;
-	*lst = new;
-	return (new);
+int	ft_is_equal(double a, double b)
+{
+	return (fabs(a - b) < FT_EPSILON);
 }

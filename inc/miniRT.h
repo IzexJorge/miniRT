@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/01 15:31:29 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:45:47 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,64 +19,74 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <float.h>
 
-typedef struct	s_coord
+# define FT_EPSILON 1e-8
+
+typedef enum e_parse_error
 {
-	float x;
-	float y;
-	float z;
+	PARSE_OK,
+	PARSE_IDENTIFIER,
+	PARSE_ONE_CAMERA,
+}			t_parse_error;
+
+typedef struct s_coord
+{
+	double	x;
+	double	y;
+	double	z;
 }				t_coord;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }				t_color;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_coord	coord;
 	t_coord	orientation;
 	int		field_of_view;
 }				t_camera;
 
-typedef struct	s_ambient
+typedef struct s_ambient
 {
-	float	ratio;
+	double	ratio;
 	t_color	color;
 }				t_ambient;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_coord	coord;
-	float	ratio;
+	double	ratio;
 }				t_light;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_coord	coord;
 	t_coord	orientation;
 	t_color	color;
 }				t_plane;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_coord	coord;
-	float	diameter;
+	double	diameter;
 	t_color	color;
 }				t_sphere;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_coord	coord;
 	t_coord	orientation;
-	float	diameter;
-	float	height;
+	double	diameter;
+	double	height;
 	t_color	color;
 }				t_cylinder;
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	t_camera	*camera;
 	t_ambient	*ambient;
@@ -86,47 +96,67 @@ typedef struct	s_scene
 	t_list		*cylinders;
 }				t_scene;
 
-typedef struct	s_mlx_data
+typedef struct s_mlx_data
 {
 	void	*mlx_ptr;
 	void	*img_ptr;
 	void	*win_ptr;
 }				t_mlx_data;
 
-
-
 int		main(int argc, char *argv[]);
 int		ft_show_image(void *mlx_ptr, void *img_ptr);
 
+/* -------◊	MATH	◊------- */
+int		ft_is_zero(double a);
+int		ft_is_equal(double a, double b);
+int		ft_is_greater(double a, double b);
+int		ft_is_less(double a, double b);
+int		ft_is_greater_equal(double a, double b);
+int		ft_is_less_equal(double a, double b);
+
 /* -------◊	PARSE	◊------- */
 int		ft_parse_scene(char *filename, t_scene *scene);
-int		ft_parse_ambient(char **line_input, t_scene *scene);
-int		ft_parse_light(char **line_input, t_scene *scene);
-int		ft_parse_plane(char **line_input, t_scene *scene);
-int		ft_parse_sphere(char **line_input, t_scene *scene);
-int		ft_parse_cylinder(char **line_input, t_scene *scene);
-int		ft_parse_coord(t_coord *coord, char *input);
-int		ft_parse_orientation(t_coord *orientation, char *input);
-int		ft_parse_color(t_color *color, char *input);
-int		ft_parse_ratio(float *ratio, char *input);
-int		ft_parse_size(float *size, char *input);
+
+int		ft_parse_ambient(char **line_inputs, int line, t_scene *scene);
+int		ft_parse_light(char **line_inputs, int line, t_scene *scene);
+int		ft_parse_plane(char **line_inputs, int line, t_scene *scene);
+int		ft_parse_sphere(char **line_inputs, int line, t_scene *scene);
+int		ft_parse_cylinder(char **line_inputs, int line, t_scene *scene);
+
+int		ft_parse_color(char *input, int line, t_color *color);
+int		ft_parse_coord(char *input, int line, t_coord *coordinates);
+int		ft_parse_orient(char *input, int line, t_coord *orientation);
+
+int		ft_parse_integer(char *input, int line, char *field, int *var);
+int		ft_parse_decimal(char *input, int line, char *field, double *var);
+
+int		ft_max_int(char *field);
+double	ft_min_dec(char *field);
+double	ft_max_dec(char *field);
+
+void	ft_err_line(int line, char *message);
+void	ft_err_field(int line, char *field, char *message);
+void	ft_err_free(char *message, int line, char **array);
+
+//TODO QUITAR
+void ft_debug(t_scene *scene);
 
 /* -------◊	VECTORS	◊------- */
 typedef struct s_vec3
 {
-	float			x;
-	float			y;
-	float			z;
+	double			x;
+	double			y;
+	double			z;
 }					t_vec3;
 
-t_vec3	vec3_new(float x, float y, float z);
+t_vec3	vec3_new(double x, double y, double z);
 void	vec3_print(t_vec3 v);
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
-t_vec3	vec3_scale(t_vec3 v, float s);
-t_vec3	vec3_divide(t_vec3 v, float s);
-float	vec3_dot(t_vec3 a, t_vec3 b);
-float	vec3_length(t_vec3 v);
+t_vec3	vec3_scale(t_vec3 v, double s);
+t_vec3	vec3_divide(t_vec3 v, double s);
+double	vec3_dot(t_vec3 a, t_vec3 b);
+double	vec3_length(t_vec3 v);
 t_vec3	vec3_normalize(t_vec3 v);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 

@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_oper.c                                        :+:      :+:    :+:   */
+/*   range.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 22:35:58 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/01 16:19:01 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/06 15:44:22 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/06 19:00:42 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vec3_add(t_vec3 a, t_vec3 b)
+int	ft_max_int(char *field)
 {
-	return ((t_vec3){a.x + b.x, a.y + b.y, a.z + b.z});
+	if (!ft_strcmp(field, "Color"))
+		return (255);
+	else
+		return (180);
 }
 
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
+double	ft_min_dec(char *field)
 {
-	return ((t_vec3){a.x - b.x, a.y - b.y, a.z - b.z});
+	if (!ft_strcmp(field, "Ratio"))
+		return (0.0);
+	else if (!ft_strcmp(field, "Orientation"))
+		return (-1.0);
+	else
+		return (-10000.0);
 }
 
-t_vec3	vec3_scale(t_vec3 v, double s)
+double	ft_max_dec(char *field)
 {
-	return ((t_vec3){v.x * s, v.y * s, v.z * s});
-}
-
-t_vec3	vec3_divide(t_vec3 v, double s)
-{
-	return ((t_vec3){v.x / s, v.y / s, v.z / s});
-}
-
-double	vec3_dot(t_vec3 a, t_vec3 b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
+	if (!ft_strcmp(field, "Ratio") || !ft_strcmp(field, "Orientation"))
+		return (1.0);
+	else
+		return (10000.0);
 }

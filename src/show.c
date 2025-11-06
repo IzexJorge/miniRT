@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:33:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/01 15:33:51 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:29:06 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_show_image(void *mlx_ptr, void *img_ptr)
 	if (win_ptr == NULL)
 	{
 		perror("error");
-		return (0);
+		return (1);
 	}
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_data.mlx_ptr = mlx_ptr;
@@ -46,5 +46,5 @@ int	ft_show_image(void *mlx_ptr, void *img_ptr)
 	mlx_hook(win_ptr, 2, 1L << 0, ft_on_keydown, &mlx_data);
 	mlx_hook(win_ptr, 17, 0, ft_close, &mlx_data);
 	mlx_loop(mlx_ptr);
-	return (1);
+	return (0);
 }

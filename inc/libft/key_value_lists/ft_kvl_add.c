@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:57:49 by jescuder          #+#    #+#             */
-/*   Updated: 2025/08/21 23:22:43 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:22:31 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_kvl_add(t_kvl **lst, t_kvl *new)
 {
-	if (!lst || !new)
-		return (0);
+	if (!new)
+		return (1);
 	new->next = *lst;
 	*lst = new;
-	return (1);
+	return (0);
 }

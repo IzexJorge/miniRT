@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_add_front.c                              :+:      :+:    :+:   */
+/*   math_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/31 20:00:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/05 19:31:06 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/03 20:26:37 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/03 20:43:07 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-t_list	*ft_lstnew_add_front(t_list **lst, void *content)
+int	ft_is_greater(double a, double b)
 {
-	t_list	*new;
+	return (a > b + FT_EPSILON);
+}
 
-	if (content == NULL)
-		return (NULL);
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	new->next = *lst;
-	*lst = new;
-	return (new);
+int	ft_is_less(double a, double b)
+{
+	return (a < b - FT_EPSILON);
+}
+
+int	ft_is_greater_equal(double a, double b)
+{
+	return (a > b - FT_EPSILON);
+}
+
+int	ft_is_less_equal(double a, double b)
+{
+	return (a < b + FT_EPSILON);
 }

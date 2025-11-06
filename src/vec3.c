@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_oper2.c                                       :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 23:42:01 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/10/31 00:37:27 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:19:01 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vec3_new(float x, float y, float z)
+t_vec3	vec3_new(double x, double y, double z)
 {
 	t_vec3	vec;
 
@@ -27,14 +27,14 @@ void	vec3_print(t_vec3 v)
 	printf("vec3(%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
 }
 
-float	vec3_length(t_vec3 v)
+double	vec3_length(t_vec3 v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 t_vec3	vec3_normalize(t_vec3 v)
 {
-	float	len;
+	double	len;
 
 	len = vec3_length(v);
 	if (len == 0.0f)

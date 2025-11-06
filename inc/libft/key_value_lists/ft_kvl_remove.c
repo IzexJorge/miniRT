@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:57:40 by jescuder          #+#    #+#             */
-/*   Updated: 2025/08/21 23:20:58 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:25:22 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	ft_kvl_remove(t_kvl **lst, char *key, void (*del)(void *))
 			else
 				previous->next = node->next;
 			ft_kvl_delone(node, del);
-			return (1);
+			return (0);
 		}
 		previous = node;
 		node = node->next;
 	}
-	return (0);
+	return (1);
 }
