@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:44:16 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 18:54:50 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:41:23 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,16 @@ int	ft_parse_decimal(char *input, int line, char *field, double *var)
 		if (err_code == 1)
 		{
 			if (!ft_strcmp(field, "Ratio"))
-				ft_err_field(line, field, "Out of range [0.0, 1.0].");
+				ft_err_field(line, field, "Out of range [0.0, 1.0]");
 			else if (!ft_strcmp(field, "Orientation"))
-				ft_err_field(line, field, "Out of range [-1.0, 1.0].");
+				ft_err_field(line, field, "Out of range [-1.0, 1.0]");
 			else
-				ft_err_field(line, field, "Out of range [-10000.0, 10000.0].");
+				ft_err_field(line, field, "Out of range [-10000.0, 10000.0]");
 		}
 		else if (err_code == 2)
-			ft_err_field(line, field, "Fractional part is smaller than 1e-8.");
+			ft_err_field(line, field, "Fractional part is smaller than 1e-8");
 		else if (err_code == 3)
-			ft_err_field(line, field, "Incorrect characters in decimal.");
+			ft_err_field(line, field, "Incorrect character in decimal");
 		return (2);
 	}
 	return (0);

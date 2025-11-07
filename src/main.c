@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:06:09 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 20:21:12 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:42:11 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_error("The only argument must be a .rt file.");
+		ft_error("The only argument must be a .rt file");
 		return (1);
 	}
 	ft_memset(&scene, 0, sizeof(t_scene));

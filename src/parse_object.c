@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:15:32 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:34:35 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:40:16 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_parse_ambient(char **line_inputs, int line, t_scene *scene)
 	int			err_code;
 
 	if (scene->ambient)
-		return (ft_err_line(line, "You must have only one ambient."), 2);
+		return (ft_err_line(line, "You must have only one ambient"), 2);
 	ambient = malloc(sizeof(t_ambient));
 	if (ambient == NULL)
 		return (perror("error"), 1);
@@ -39,7 +39,7 @@ int	ft_parse_light(char **line_inputs, int line, t_scene *scene)
 	int			err_code;
 
 	if (scene->light)
-		return (ft_err_line(line, "You must have only one light."), 2);
+		return (ft_err_line(line, "You must have only one light"), 2);
 	light = malloc(sizeof(t_light));
 	if (light == NULL)
 		return (perror("error"), 1);

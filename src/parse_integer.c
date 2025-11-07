@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:27:11 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:00:58 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:41:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int	ft_parse_integer(char *input, int line, char *field, int *var)
 		if (err_code == 1)
 		{
 			if (!ft_strcmp(field, "Color"))
-				ft_err_field(line, field, "Out of range [0, 255].");
+				ft_err_field(line, field, "Out of range [0, 255]");
 			else
-				ft_err_field(line, field, "Out of range [0, 180].");
+				ft_err_field(line, field, "Out of range [0, 180]");
 		}
 		else if (err_code == 2)
-			ft_err_field(line, field, "Incorrect characters in integer.");
+			ft_err_field(line, field, "Incorrect character in integer");
 		return (2);
 	}
 	return (0);

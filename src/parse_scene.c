@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:33:30 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:40:53 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static int	ft_parse_camera(char **line_inputs, int line, t_scene *scene)
 	int			err_code;
 
 	if (scene->camera)
-		return (ft_err_line(line, "You must have only one camera."), 2);
+		return (ft_err_line(line, "You must have only one camera"), 2);
 	camera = malloc(sizeof(t_camera));
 	if (camera == NULL)
 		return (perror("error"), 1);
 	scene->camera = camera;
 	if (ft_str_arraylen(line_inputs) != 4)
 		return (ft_err_line(line,
-				"Camera needs Coord, Orient and Fied Of View."), 2);
+				"Camera needs Coord, Orient and Field Of View"), 2);
 	err_code = ft_parse_coord(line_inputs[1], line, &camera->coord);
 	if (err_code > 0)
 		return (err_code);
@@ -33,7 +33,7 @@ static int	ft_parse_camera(char **line_inputs, int line, t_scene *scene)
 	if (err_code > 0)
 		return (err_code);
 	if (ft_parse_integer(line_inputs[3], line,
-			"Fied Of View", &camera->field_of_view))
+			"Field Of View", &camera->field_of_view))
 		return (2);
 	return (0);
 }
@@ -57,7 +57,7 @@ static int	ft_parse_line(char **line_inputs, int line, t_scene *scene)
 		return (ft_parse_sphere(line_inputs, line, scene));
 	else if (!ft_strcmp(identifier, "cy"))
 		return (ft_parse_cylinder(line_inputs, line, scene));
-	ft_err_line(line, "Incorrect line identifier.");
+	ft_err_line(line, "Incorrect line identifier");
 	return (1);
 }
 
@@ -68,17 +68,17 @@ static int	ft_validate_scene(t_scene *scene)
 	err_code = 0;
 	if (scene->camera == NULL)
 	{
-		ft_error("You must have a camera.");
+		ft_error("You must have a camera");
 		err_code = 1;
 	}
 	if (scene->ambient == NULL)
 	{
-		ft_error("You must have an ambient lighting.");
+		ft_error("You must have an ambient lighting");
 		err_code = 1;
 	}
 	if (scene->light == NULL)
 	{
-		ft_error("You must have a light.");
+		ft_error("You must have a light");
 		err_code = 1;
 	}
 	return (err_code);
