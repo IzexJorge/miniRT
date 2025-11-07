@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:45:47 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:04:04 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,12 @@
 
 # define FT_EPSILON 1e-8
 
-typedef enum e_parse_error
+typedef struct s_vec3
 {
-	PARSE_OK,
-	PARSE_IDENTIFIER,
-	PARSE_ONE_CAMERA,
-}			t_parse_error;
-
-typedef struct s_coord
-{
-	double	x;
-	double	y;
-	double	z;
-}				t_coord;
+	double			x;
+	double			y;
+	double			z;
+}					t_vec3;
 
 typedef struct s_color
 {
@@ -46,8 +39,8 @@ typedef struct s_color
 
 typedef struct s_camera
 {
-	t_coord	coord;
-	t_coord	orientation;
+	t_vec3	coord;
+	t_vec3	orientation;
 	int		field_of_view;
 }				t_camera;
 
@@ -59,28 +52,28 @@ typedef struct s_ambient
 
 typedef struct s_light
 {
-	t_coord	coord;
+	t_vec3	coord;
 	double	ratio;
 }				t_light;
 
 typedef struct s_plane
 {
-	t_coord	coord;
-	t_coord	orientation;
+	t_vec3	coord;
+	t_vec3	orientation;
 	t_color	color;
 }				t_plane;
 
 typedef struct s_sphere
 {
-	t_coord	coord;
+	t_vec3	coord;
 	double	diameter;
 	t_color	color;
 }				t_sphere;
 
 typedef struct s_cylinder
 {
-	t_coord	coord;
-	t_coord	orientation;
+	t_vec3	coord;
+	t_vec3	orientation;
 	double	diameter;
 	double	height;
 	t_color	color;
@@ -124,8 +117,8 @@ int		ft_parse_sphere(char **line_inputs, int line, t_scene *scene);
 int		ft_parse_cylinder(char **line_inputs, int line, t_scene *scene);
 
 int		ft_parse_color(char *input, int line, t_color *color);
-int		ft_parse_coord(char *input, int line, t_coord *coordinates);
-int		ft_parse_orient(char *input, int line, t_coord *orientation);
+int		ft_parse_coord(char *input, int line, t_vec3 *coordinates);
+int		ft_parse_orient(char *input, int line, t_vec3 *orientation);
 
 int		ft_parse_integer(char *input, int line, char *field, int *var);
 int		ft_parse_decimal(char *input, int line, char *field, double *var);
@@ -142,12 +135,6 @@ void	ft_err_free(char *message, int line, char **array);
 void ft_debug(t_scene *scene);
 
 /* -------◊	VECTORS	◊------- */
-typedef struct s_vec3
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
 
 t_vec3	vec3_new(double x, double y, double z);
 void	vec3_print(t_vec3 v);
