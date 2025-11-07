@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 17:04:04 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:25:18 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,50 +25,50 @@
 
 typedef struct s_vec3
 {
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
+	double	x;
+	double	y;
+	double	z;
+}			t_vec3;
 
 typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
-}				t_color;
+}		t_color;
 
 typedef struct s_camera
 {
 	t_vec3	coord;
 	t_vec3	orientation;
 	int		field_of_view;
-}				t_camera;
+}			t_camera;
 
 typedef struct s_ambient
 {
 	double	ratio;
 	t_color	color;
-}				t_ambient;
+}			t_ambient;
 
 typedef struct s_light
 {
 	t_vec3	coord;
 	double	ratio;
-}				t_light;
+}			t_light;
 
 typedef struct s_plane
 {
 	t_vec3	coord;
 	t_vec3	orientation;
 	t_color	color;
-}				t_plane;
+}			t_plane;
 
 typedef struct s_sphere
 {
 	t_vec3	coord;
 	double	diameter;
 	t_color	color;
-}				t_sphere;
+}			t_sphere;
 
 typedef struct s_cylinder
 {
@@ -77,7 +77,7 @@ typedef struct s_cylinder
 	double	diameter;
 	double	height;
 	t_color	color;
-}				t_cylinder;
+}			t_cylinder;
 
 typedef struct s_scene
 {
@@ -94,7 +94,7 @@ typedef struct s_mlx_data
 	void	*mlx_ptr;
 	void	*img_ptr;
 	void	*win_ptr;
-}				t_mlx_data;
+}			t_mlx_data;
 
 int		main(int argc, char *argv[]);
 int		ft_show_image(void *mlx_ptr, void *img_ptr);
@@ -135,7 +135,6 @@ void	ft_err_free(char *message, int line, char **array);
 void ft_debug(t_scene *scene);
 
 /* -------◊	VECTORS	◊------- */
-
 t_vec3	vec3_new(double x, double y, double z);
 void	vec3_print(t_vec3 v);
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);

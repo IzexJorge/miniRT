@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:06:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 17:04:04 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:51:47 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	ft_parse_coord(char *input, int line, t_vec3 *coordinates)
 }
 
 //TODO Implementar
-static int	ft_is_normalized(t_vec3 *orientation)
+static int	ft_parse_normalized(t_vec3 *orientation)
 {
 	(void)orientation;
-	return (1);
+	return (0);
 }
 
 int	ft_parse_orient(char *input, int line, t_vec3 *orientation)
@@ -71,7 +71,7 @@ int	ft_parse_orient(char *input, int line, t_vec3 *orientation)
 	if (ft_parse_decimal(values[2], line, "Orientation", &orientation->z))
 		return (ft_free_str_array(values), 2);
 	ft_free_str_array(values);
-	if (ft_is_normalized(orientation) == 0)
+	if (ft_parse_normalized(orientation))
 		return (ft_err_line(line, "Orientation needs to be normalized"), 2);
 	return (0);
 }
