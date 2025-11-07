@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils2.c                                      :+:      :+:    :+:   */
+/*   ft_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 20:26:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/03 20:43:07 by jescuder         ###   ########.fr       */
+/*   Created: 2025/10/31 17:12:44 by jescuder          #+#    #+#             */
+/*   Updated: 2025/10/31 18:52:38 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "libft.h"
 
-int	ft_is_greater(double a, double b)
+void	ft_err(char *s)
 {
-	return (a > b + FT_EPSILON);
-}
-
-int	ft_is_less(double a, double b)
-{
-	return (a < b - FT_EPSILON);
-}
-
-int	ft_is_greater_equal(double a, double b)
-{
-	return (a > b - FT_EPSILON);
-}
-
-int	ft_is_less_equal(double a, double b)
-{
-	return (a < b + FT_EPSILON);
+	if (!s)
+		return ;
+	write(STDERR_FILENO, "error: ", 7);
+	write(STDERR_FILENO, s, ft_strlen(s));
+	write(STDERR_FILENO, "\n", 1);
 }

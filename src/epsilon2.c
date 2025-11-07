@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.c                                       :+:      :+:    :+:   */
+/*   epsilon2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 20:06:33 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/03 20:43:04 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/03 20:26:37 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/07 20:47:58 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,5 @@
 
 int	ft_is_zero(double a)
 {
-	return (fabs(a) < FT_EPSILON);
-}
-
-int	ft_is_equal(double a, double b)
-{
-	return (fabs(a - b) < FT_EPSILON);
+	return (fabs(a) < EPSILON);
 }

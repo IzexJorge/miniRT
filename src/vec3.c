@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 23:42:01 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/01 16:19:01 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:16:33 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_vec3	vec3_normalize(t_vec3 v)
 	double	len;
 
 	len = vec3_length(v);
-	if (len == 0.0f)
-		return ((t_vec3){0.0f, 0.0f, 0.0f});
+	if (ft_is_equal(len, 0.0))
+		return ((t_vec3){0.0, 0.0, 0.0});
 	return (vec3_divide(v, len));
 }
 

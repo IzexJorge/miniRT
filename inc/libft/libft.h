@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 21:53:21 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/05 16:43:38 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:51:46 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_countlines_fd(int fd);
 char	*ft_fd_to_str(int fd);
 char	**ft_fd_split(int fd, char c);
-void	ft_error(char *s);
+void	ft_err(char *s);
 
 /* -------◊		FUNCTIONS MATH     ◊------- */
 int		ft_mean(int *n, int size);

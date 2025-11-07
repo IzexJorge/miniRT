@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   epsilon1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/31 17:12:44 by jescuder          #+#    #+#             */
-/*   Updated: 2025/10/31 18:52:38 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/03 20:06:33 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/07 20:47:56 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-void	ft_error(char *s)
+int	ft_is_equal(double a, double b)
 {
-	if (!s)
-		return ;
-	write(STDERR_FILENO, "error: ", 7);
-	write(STDERR_FILENO, s, ft_strlen(s));
-	write(STDERR_FILENO, "\n", 1);
+	return (fabs(a - b) < EPSILON);
+}
+
+int	ft_is_greater(double a, double b)
+{
+	return (a > b + EPSILON);
+}
+
+int	ft_is_less(double a, double b)
+{
+	return (a < b - EPSILON);
+}
+
+int	ft_is_greater_equal(double a, double b)
+{
+	return (a > b - EPSILON);
+}
+
+int	ft_is_less_equal(double a, double b)
+{
+	return (a < b + EPSILON);
 }

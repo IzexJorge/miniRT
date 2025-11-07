@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 17:25:18 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:47:54 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <float.h>
 
-# define FT_EPSILON 1e-8
+# define EPSILON 1e-8
 
 typedef struct s_vec3
 {
@@ -99,13 +99,13 @@ typedef struct s_mlx_data
 int		main(int argc, char *argv[]);
 int		ft_show_image(void *mlx_ptr, void *img_ptr);
 
-/* -------◊	MATH	◊------- */
-int		ft_is_zero(double a);
+/* -------◊	EPSILON	◊------- */
 int		ft_is_equal(double a, double b);
 int		ft_is_greater(double a, double b);
 int		ft_is_less(double a, double b);
 int		ft_is_greater_equal(double a, double b);
 int		ft_is_less_equal(double a, double b);
+int		ft_is_zero(double a);
 
 /* -------◊	PARSE	◊------- */
 int		ft_parse_scene(char *filename, t_scene *scene);

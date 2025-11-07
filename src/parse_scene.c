@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 18:33:59 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:34:15 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ static int	ft_validate_scene(t_scene *scene)
 	err_code = 0;
 	if (scene->camera == NULL)
 	{
-		ft_error("You must have a camera");
+		ft_err("You must have a camera");
 		err_code = 1;
 	}
 	if (scene->ambient == NULL)
 	{
-		ft_error("You must have an ambient lighting");
+		ft_err("You must have an ambient lighting");
 		err_code = 1;
 	}
 	if (scene->light == NULL)
 	{
-		ft_error("You must have a light");
+		ft_err("You must have a light");
 		err_code = 1;
 	}
 	return (err_code);
