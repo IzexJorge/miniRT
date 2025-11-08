@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:33:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/05 16:29:06 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/08 14:53:41 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	ft_close(t_mlx_data *mlx_data)
 	mlx_destroy_image(mlx_data->mlx_ptr, mlx_data->img_ptr);
 	mlx_destroy_window(mlx_data->mlx_ptr, mlx_data->win_ptr);
 	mlx_destroy_display(mlx_data->mlx_ptr);
+	free(mlx_data->mlx_ptr);
 	exit(0);
 	return (0);
 }
