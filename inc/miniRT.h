@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 20:47:54 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:40:24 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@
 # include <fcntl.h>
 # include <sys/time.h>
 # include <float.h>
+# include <errno.h>
+# include <stdint.h>
 
 # define EPSILON 1e-8
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 typedef struct s_vec3
 {
@@ -89,15 +93,24 @@ typedef struct s_scene
 	t_list		*cylinders;
 }				t_scene;
 
+typedef struct s_image
+{
+	void	*inner;
+	char	*data;
+	int		bits_per_pixel;
+	int		line_bytes;
+	int		endian;
+}			t_image;
+
 typedef struct s_mlx_data
 {
-	void	*mlx_ptr;
-	void	*img_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	t_image	*img;
+	void	*win;
 }			t_mlx_data;
 
 int		main(int argc, char *argv[]);
-int		ft_show_image(void *mlx_ptr, void *img_ptr);
+int		ft_show_image(void *mlx, t_image *img);
 
 /* -------◊	EPSILON	◊------- */
 int		ft_is_equal(double a, double b);
@@ -147,6 +160,6 @@ t_vec3	vec3_normalize(t_vec3 v);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 
 /* -------◊	RENDER	◊------- */
-int		ft_render_image(t_scene *scene, void *img_ptr);
+void	ft_render_image(t_image *img, t_scene *scene);
 
 #endif
