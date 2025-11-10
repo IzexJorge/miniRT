@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:06:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 20:31:29 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:24:16 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	ft_parse_color(char *input, int line, t_color *color)
 		return (perror("error"), 1);
 	if (ft_str_arraylen(values) != 3)
 		return (ft_err_free("Color needs 3 values", line, values), 2);
-	if (ft_parse_integer(values[0], line, "Color", &color->r))
+	if (ft_parse_color_value(values[0], line, &color->x))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_integer(values[1], line, "Color", &color->g))
+	if (ft_parse_color_value(values[1], line, &color->y))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_integer(values[2], line, "Color", &color->b))
+	if (ft_parse_color_value(values[2], line, &color->z))
 		return (ft_free_str_array(values), 2);
 	return (ft_free_str_array(values), 0);
 }

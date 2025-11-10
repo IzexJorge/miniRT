@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   range.c                                            :+:      :+:    :+:   */
+/*   parse_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:44:22 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:00:42 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:10:31 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-int	ft_max_int(char *field)
-{
-	if (!ft_strcmp(field, "Color"))
-		return (255);
-	else
-		return (180);
-}
 
 double	ft_min_dec(char *field)
 {

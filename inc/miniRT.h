@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/08 18:40:24 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:25:16 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <sys/time.h>
 # include <float.h>
 # include <errno.h>
 # include <stdint.h>
+# include <math.h>
 
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 # define EPSILON 1e-8
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -34,18 +37,13 @@ typedef struct s_vec3
 	double	z;
 }			t_vec3;
 
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}		t_color;
+typedef t_vec3	t_color;
 
 typedef struct s_camera
 {
 	t_vec3	coord;
 	t_vec3	orientation;
-	int		field_of_view;
+	double	field_of_view;
 }			t_camera;
 
 typedef struct s_ambient
@@ -133,10 +131,10 @@ int		ft_parse_color(char *input, int line, t_color *color);
 int		ft_parse_coord(char *input, int line, t_vec3 *coordinates);
 int		ft_parse_orient(char *input, int line, t_vec3 *orientation);
 
-int		ft_parse_integer(char *input, int line, char *field, int *var);
+int		ft_parse_field_of_view(char *input, int line, double *field_of_view);
+int		ft_parse_color_value(char *input, int line, double *color);
 int		ft_parse_decimal(char *input, int line, char *field, double *var);
 
-int		ft_max_int(char *field);
 double	ft_min_dec(char *field);
 double	ft_max_dec(char *field);
 

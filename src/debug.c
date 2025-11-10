@@ -7,7 +7,7 @@ static void	ft_debug_plane(void *plane_void)
 	t_vec3	coord = plane->coord;
 	t_vec3	orient = plane->orientation;
 	t_color	color = plane->color;
-	printf("Plane: %g,%g,%g  %g,%g,%g  %d,%d,%d\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, color.r, color.g, color.b);
+	printf("Plane: %g,%g,%g  %g,%g,%g  %g,%g,%g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, color.x, color.y, color.z);
 }
 
 static void	ft_debug_sphere(void *sphere_void)
@@ -16,7 +16,7 @@ static void	ft_debug_sphere(void *sphere_void)
 	t_vec3		coord = sphere->coord;
 	double		diameter = sphere->diameter;
 	t_color		color = sphere->color;
-	printf("Sphere: %g,%g,%g  %g  %d,%d,%d\n", coord.x, coord.y, coord.z, diameter, color.r, color.g, color.b);
+	printf("Sphere: %g,%g,%g  %g  %g,%g,%g\n", coord.x, coord.y, coord.z, diameter, color.x, color.y, color.z);
 }
 
 static void	ft_debug_cylinder(void *cylinder_void)
@@ -27,7 +27,7 @@ static void	ft_debug_cylinder(void *cylinder_void)
 	double		diameter = cylinder->diameter;
 	double		height = cylinder->height;
 	t_color		color = cylinder->color;
-	printf("Cylinder: %g,%g,%g  %g,%g,%g  %g  %g  %d,%d,%d\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, diameter, height, color.r, color.g, color.b);
+	printf("Cylinder: %g,%g,%g  %g,%g,%g  %g  %g  %g,%g,%g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, diameter, height, color.x, color.y, color.z);
 }
 
 //TODO QUITAR
@@ -37,13 +37,13 @@ void	ft_debug(t_scene *scene)
 	t_camera	*camera = scene->camera;
 	t_vec3		coord = camera->coord;
 	t_vec3		orient = camera->orientation;
-	int			fov = camera->field_of_view;
-	printf("Camera: %g,%g,%g  %g,%g,%g  %d\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, fov);
+	double		fov = camera->field_of_view;
+	printf("Camera: %g,%g,%g  %g,%g,%g  %g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, fov);
 
 	t_ambient	*ambient = scene->ambient;
 	double		ratio = ambient->ratio;
 	t_color		color = ambient->color;
-	printf("Ambient: %g  %d,%d,%d\n", ratio, color.r, color.g, color.b);
+	printf("Ambient: %g  %g,%g,%g\n", ratio, color.x, color.y, color.z);
 
 	t_light		*light = scene->light;
 	coord = light->coord;

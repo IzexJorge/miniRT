@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 19:34:15 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:24:42 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int	ft_parse_camera(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_orient(line_inputs[2], line, &camera->orientation);
 	if (err_code > 0)
 		return (err_code);
-	if (ft_parse_integer(line_inputs[3], line,
-			"Field of View", &camera->field_of_view))
+	if (ft_parse_field_of_view(line_inputs[3], line, &camera->field_of_view))
 		return (2);
 	return (0);
 }

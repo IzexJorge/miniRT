@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:27:11 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 16:41:36 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:22:33 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_get_sign(char **input)
 	return (sign);
 }
 
-static int	ft_internal(char *input, int *var, int min, int max)
+static int	ft_parse_integer(char *input, int *var, int min, int max)
 {
 	int	sign;
 	int	result;
@@ -55,23 +55,42 @@ static int	ft_internal(char *input, int *var, int min, int max)
 	return (0);
 }
 
-int	ft_parse_integer(char *input, int line, char *field, int *var)
+int	ft_parse_field_of_view(char *input, int line, double *field_of_view)
 {
+	int	var_int;
 	int	err_code;
 
-	err_code = ft_internal(input, var, 0, ft_max_int(field));
-	if (err_code > 0)
+	err_code = ft_parse_integer(input, &var_int, 0, 180);
+	if (err_code == 1)
 	{
-		if (err_code == 1)
-		{
-			if (!ft_strcmp(field, "Color"))
-				ft_err_field(line, field, "Out of range [0, 255]");
-			else
-				ft_err_field(line, field, "Out of range [0, 180]");
-		}
-		else if (err_code == 2)
-			ft_err_field(line, field, "Incorrect character in integer");
+		ft_err_field(line, "Field of View", "Out of range [0, 180]");
 		return (2);
 	}
+	else if(err_code == 2)
+	{
+		ft_err_field(line, "Field of View", "Incorrect character in integer");
+		return (2);
+	}
+	*field_of_view = (double)var_int * M_PI / 180.0;
+	return (0);
+}
+
+int	ft_parse_color_value(char *input, int line, double *color)
+{
+	int	var_int;
+	int	err_code;
+
+	err_code = ft_parse_integer(input, &var_int, 0, 255);
+	if (err_code == 1)
+	{
+		ft_err_field(line, "Color", "Out of range [0, 255]");
+		return (2);
+	}
+	else if(err_code == 2)
+	{
+		ft_err_field(line, "Color", "Incorrect character in integer");
+		return (2);
+	}
+	*color = var_int / 255.0;
 	return (0);
 }
