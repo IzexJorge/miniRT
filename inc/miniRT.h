@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/10 13:25:16 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:02:06 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,9 @@ double	vec3_dot(t_vec3 a, t_vec3 b);
 double	vec3_length(t_vec3 v);
 t_vec3	vec3_normalize(t_vec3 v);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
+
+/* -------◊	MATH	◊------- */
+double	ft_clamp(double value);
 
 /* -------◊	RENDER	◊------- */
 void	ft_render_image(t_image *img, t_scene *scene);
