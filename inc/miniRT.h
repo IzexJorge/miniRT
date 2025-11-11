@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/11 23:42:52 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/11 23:49:04 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,7 @@ double	ft_clamp(double value);
 
 /* -------◊	RENDER	◊------- */
 void	ft_render_image(t_image *img, t_scene *scene);
+t_vec3	get_ray_direction(int x, int y, t_camera *cam);
+void	ft_init_camera(t_camera *cam);
 
 #endif

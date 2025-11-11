@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/11 23:20:37 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/11 23:52:43 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static t_color	ft_get_pixel_color(int x, int y, t_scene *scene)
 
 	start = scene->camera->coord;
 	orient = get_ray_direction(x, y, scene->camera);
-	(void)y;
 	return (ft_trace_ray(start, orient, scene));
 }
 
@@ -56,13 +55,15 @@ void	ft_render_image(t_image *img, t_scene *scene)
 
 	pixel_addr = img->data;
 	bytes_per_pixel = img->bits_per_pixel / 8;
+	ft_init_camera(scene->camera);
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			set_pixel_color_bytes(pixel_addr, ft_get_pixel_color(x, y, scene));
+			set_pixel_color_bytes(pixel_addr,
+				ft_get_pixel_color(x, y, scene));
 			pixel_addr += bytes_per_pixel;
 			x++;
 		}
