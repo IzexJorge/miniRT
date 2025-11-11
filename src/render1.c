@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/10 15:05:02 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/11 23:20:37 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_color	ft_get_pixel_color(int x, int y, t_scene *scene)
 	t_vec3	orient;
 
 	start = scene->camera->coord;
-	(void)x;
+	orient = get_ray_direction(x, y, scene->camera);
 	(void)y;
 	return (ft_trace_ray(start, orient, scene));
 }

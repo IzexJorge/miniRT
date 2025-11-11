@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/10 14:02:06 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/11 23:42:52 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ typedef struct s_camera
 	t_vec3	coord;
 	t_vec3	orientation;
 	double	field_of_view;
+	t_vec3	forward;
+	t_vec3	right;
+	t_vec3	up;
+	double	focal_len;
 }			t_camera;
 
 typedef struct s_ambient
