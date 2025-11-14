@@ -37,7 +37,7 @@ void	ft_debug(t_scene *scene)
 	t_camera	*camera = scene->camera;
 	t_vec3		coord = camera->coord;
 	t_vec3		orient = camera->orientation;
-	double		fov = camera->field_of_view;
+	double		fov = camera->fov;
 	printf("Camera: %g,%g,%g  %g,%g,%g  %g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, fov);
 
 	t_ambient	*ambient = scene->ambient;
@@ -50,9 +50,12 @@ void	ft_debug(t_scene *scene)
 	ratio = light->ratio;
 	printf("Light: %g,%g,%g %g\n", coord.x, coord.y, coord.z, ratio);
 
+	printf("Planes: %d\n", scene->num_planes);
 	ft_lstiter(scene->planes, ft_debug_plane);
 
+	printf("Spheres: %d\n", scene->num_spheres);
 	ft_lstiter(scene->spheres, ft_debug_sphere);
 
+	printf("Cylinders: %d\n", scene->num_cylinders);
 	ft_lstiter(scene->cylinders, ft_debug_cylinder);
 }

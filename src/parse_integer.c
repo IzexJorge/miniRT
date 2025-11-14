@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_integer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:27:11 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/10 12:22:33 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/14 01:12:57 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	ft_parse_integer(char *input, int *var, int min, int max)
 	return (0);
 }
 
-int	ft_parse_field_of_view(char *input, int line, double *field_of_view)
+int	ft_parse_field_of_view(char *input, int line, double *fov)
 {
 	int	var_int;
 	int	err_code;
@@ -71,7 +71,7 @@ int	ft_parse_field_of_view(char *input, int line, double *field_of_view)
 		ft_err_field(line, "Field of View", "Incorrect character in integer");
 		return (2);
 	}
-	*field_of_view = (double)var_int * M_PI / 180.0;
+	*fov = (double)var_int;
 	return (0);
 }
 
