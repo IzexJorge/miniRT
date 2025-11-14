@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 01:14:25 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 09:59:26 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ typedef struct s_ray
 	t_vec3	dir;
 }			t_ray;
 
-typedef struct s_hitpoint
+typedef struct s_hit
 {
 	char	type;
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
 	double	t;
-}			t_hitpoint;
+}			t_hit;
 
 typedef struct s_camera
 {
@@ -172,33 +172,33 @@ void ft_debug(t_scene *scene);
 /* -------◊	VECTORS	◊------- */
 t_vec3	vec3_new(double x, double y, double z);
 void	vec3_print(t_vec3 v);
-t_vec3	vec3_add(t_vec3 a, t_vec3 b);
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
+double	vec3_length(t_vec3 v);
+
+t_vec3	vec3_normalize(t_vec3 v);
 t_vec3	vec3_scale(t_vec3 v, double s);
 t_vec3	vec3_divide(t_vec3 v, double s);
-double	vec3_dot(t_vec3 a, t_vec3 b);
-double	vec3_length(t_vec3 v);
-t_vec3	vec3_normalize(t_vec3 v);
+
+t_vec3	vec3_add(t_vec3 a, t_vec3 b);
+t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
+t_vec3	vec3_mul(t_vec3 a, t_vec3 b);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
+double	vec3_dot(t_vec3 a, t_vec3 b);
 
 /* -------◊	MATH	◊------- */
 double	ft_clamp(double value);
-t_vec3	vec3_mul(t_vec3 a, t_vec3 b);
 int		ft_solve_quadratic(double a, double b, double c, double *t0, double *t1);
 
 /* -------◊	RENDER	◊------- */
 void	ft_render_image(t_image *img, t_scene *scene);
-void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color);
 t_color	ft_get_pixel_color(int x, int y, t_scene *scene);
 t_color	ft_trace_ray(t_ray ray, t_scene *scene);
-t_color	ft_shade(t_ray ray, t_scene *scene, t_hitpoint *hit);
+t_color	ft_shade(t_ray ray, t_scene *scene, t_hit *hit);
 
 void	ft_init_camera(t_camera *cam);
 t_vec3	ft_get_ray_direction(int x, int y, t_camera *cam);
 
-
 /* -------◊	SPHERE	◊------- */
 int		ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t);
-void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit);
+void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:43:29 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 01:13:49 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 09:36:10 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ double	ft_clamp(double value)
 	if (value > 1.0)
 		return (1.0);
 	return (value);
-}
-
-t_vec3	vec3_mul(t_vec3 a, t_vec3 b)
-{
-	return ((t_vec3){a.x * b.x, a.y * b.y, a.z * b.z});
 }
 
 int	ft_solve_quadratic(double a, double b, double c, double *t0, double *t1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 19:49:06 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 01:12:38 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 09:59:26 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t)
 	return (1);
 }
 
-void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit)
+void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 {
 	t_sphere	*sp;
 	t_list		*node;
