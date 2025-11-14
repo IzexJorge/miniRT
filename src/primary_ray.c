@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 23:16:31 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 01:21:19 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_init_camera(t_camera *cam)
 	t_vec3	world_up;
 
 	world_up = (t_vec3){0, 1, 0};
-	cam->forward = vec3_normalize(cam->orientation);
+	cam->forward = vec3_normalize(cam->orient);
 	if (fabs(vec3_dot(cam->forward, world_up)) > 0.999)
 		world_up = (t_vec3){1, 0, 0};
 	cam->right = vec3_normalize(vec3_cross(world_up, cam->forward));

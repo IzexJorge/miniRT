@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 19:49:06 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 01:12:38 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:10:53 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,27 @@
 int	ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t)
 {
 	t_vec3	oc;
-	double	a;
 	double	b;
 	double	c;
 	double	t0;
 	double	t1;
+	double	tmp;
 
 	oc = vec3_sub(ray.origin, sp->coord);
-	a = 1.0; // ray.direction debe estar normalizado
 	b = 2.0 * vec3_dot(oc, ray.dir);
 	c = vec3_dot(oc, oc) - (sp->diameter / 2) * (sp->diameter / 2);
-
-	if (!ft_solve_quadratic(a, b, c, &t0, &t1))
+	if (!ft_solve_quadratic(1, b, c, &t0, &t1))
 		return (0);
-
-	// asegurar que t0 <= t1
-	if (t0 > t1)
+	if (ft_is_greater(t0, t1))
 	{
-		double tmp = t0;
+		tmp = t0;
 		t0 = t1;
 		t1 = tmp;
 	}
-
 	if (ft_is_less(t0, 0.0))
 		t0 = t1;
-
 	if (ft_is_less(t0, 0.0))
 		return (0);
-
 	*t = t0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 01:12:57 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_parse_camera(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_coord(line_inputs[1], line, &camera->coord);
 	if (err_code > 0)
 		return (err_code);
-	err_code = ft_parse_orient(line_inputs[2], line, &camera->orientation);
+	err_code = ft_parse_orient(line_inputs[2], line, &camera->orient);
 	if (err_code > 0)
 		return (err_code);
 	if (ft_parse_field_of_view(line_inputs[3], line, &camera->fov))

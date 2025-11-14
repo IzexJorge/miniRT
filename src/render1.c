@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 01:17:32 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:29:24 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ t_color	ft_trace_ray(t_ray ray, t_scene *scene)
 	hit.point = (t_vec3){0.0, 0.0, 0.0};
 	hit.normal = (t_vec3){0.0, 0.0, 0.0};
 	hit.t = 0.0;
+	ft_search_planes(ray, scene, &min_t, &hit);
 	ft_search_spheres(ray, scene, &min_t, &hit);
+	ft_search_cyl(ray, scene, &min_t, &hit);
 	if (hit.type != 0)
 		color = ft_shade(ray, scene, &hit);
 	else

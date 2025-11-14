@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:06:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/13 22:55:54 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	ft_parse_coord(char *input, int line, t_vec3 *coordinates)
 	return (ft_free_str_array(values), 0);
 }
 
-static int	ft_parse_normalized(t_vec3 *orientation)
+static int	ft_parse_normalized(t_vec3 *orient)
 {
-	if (ft_is_equal(vec3_length(*orientation), 1))
+	if (ft_is_equal(vec3_length(*orient), 1))
 		return (0);
 	return (1);
 }
 
-int	ft_parse_orient(char *input, int line, t_vec3 *orientation)
+int	ft_parse_orient(char *input, int line, t_vec3 *orient)
 {
 	char	**values;
 
@@ -64,14 +64,14 @@ int	ft_parse_orient(char *input, int line, t_vec3 *orientation)
 		return (perror("error"), 1);
 	if (ft_str_arraylen(values) != 3)
 		return (ft_err_free("Orientation needs 3 values", line, values), 2);
-	if (ft_parse_decimal(values[0], line, "Orientation", &orientation->x))
+	if (ft_parse_decimal(values[0], line, "Orientation", &orient->x))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_decimal(values[1], line, "Orientation", &orientation->y))
+	if (ft_parse_decimal(values[1], line, "Orientation", &orient->y))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_decimal(values[2], line, "Orientation", &orientation->z))
+	if (ft_parse_decimal(values[2], line, "Orientation", &orient->z))
 		return (ft_free_str_array(values), 2);
 	ft_free_str_array(values);
-	if (ft_parse_normalized(orientation))
+	if (ft_parse_normalized(orient))
 		return (ft_err_line(line, "Orientation is not normalized"), 2);
 	return (0);
 }
