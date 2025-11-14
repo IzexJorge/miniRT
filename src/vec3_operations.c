@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_oper.c                                        :+:      :+:    :+:   */
+/*   vec3_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 22:35:58 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/01 16:19:01 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/14 09:40:54 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 	return ((t_vec3){a.x - b.x, a.y - b.y, a.z - b.z});
 }
 
-t_vec3	vec3_scale(t_vec3 v, double s)
+t_vec3	vec3_mul(t_vec3 a, t_vec3 b)
 {
-	return ((t_vec3){v.x * s, v.y * s, v.z * s});
+	return ((t_vec3){a.x * b.x, a.y * b.y, a.z * b.z});
 }
 
-t_vec3	vec3_divide(t_vec3 v, double s)
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	return ((t_vec3){v.x / s, v.y / s, v.z / s});
+	return ((t_vec3){
+		a.y * b.z - a.z * b.y,
+		a.z * b.x - a.x * b.z,
+		a.x * b.y - a.y * b.x
+	});
 }
 
 double	vec3_dot(t_vec3 a, t_vec3 b)

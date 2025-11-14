@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.c                                             :+:      :+:    :+:   */
+/*   vec3_transformations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 23:42:01 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/07 20:16:33 by jescuder         ###   ########.fr       */
+/*   Created: 2025/11/14 09:40:03 by jescuder          #+#    #+#             */
+/*   Updated: 2025/11/14 09:40:57 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-t_vec3	vec3_new(double x, double y, double z)
-{
-	t_vec3	vec;
-
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return (vec);
-}
-
-void	vec3_print(t_vec3 v)
-{
-	printf("vec3(%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
-}
-
-double	vec3_length(t_vec3 v)
-{
-	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
-}
 
 t_vec3	vec3_normalize(t_vec3 v)
 {
@@ -42,11 +22,12 @@ t_vec3	vec3_normalize(t_vec3 v)
 	return (vec3_divide(v, len));
 }
 
-t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
+t_vec3	vec3_scale(t_vec3 v, double s)
 {
-	return ((t_vec3){
-		a.y * b.z - a.z * b.y,
-		a.z * b.x - a.x * b.z,
-		a.x * b.y - a.y * b.x
-	});
+	return ((t_vec3){v.x * s, v.y * s, v.z * s});
+}
+
+t_vec3	vec3_divide(t_vec3 v, double s)
+{
+	return ((t_vec3){v.x / s, v.y / s, v.z / s});
 }

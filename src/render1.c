@@ -6,13 +6,13 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 22:29:24 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:25:06 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color	ft_shade(t_ray ray, t_scene *scene, t_hitpoint *hit)
+t_color	ft_shade(t_ray ray, t_scene *scene, t_hit *hit)
 {
 	t_color	color;
 	t_vec3	light_dir;
@@ -41,7 +41,7 @@ t_color	ft_shade(t_ray ray, t_scene *scene, t_hitpoint *hit)
 t_color	ft_trace_ray(t_ray ray, t_scene *scene)
 {
 	t_color	color;
-	t_hitpoint	hit;
+	t_hit	hit;
 	double	min_t;
 
 	min_t = DBL_MAX;
@@ -70,7 +70,7 @@ t_color	ft_get_pixel_color(int x, int y, t_scene *scene)
 	return (ft_trace_ray(ray, scene));
 }
 
-void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color)
+static void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color)
 {
 	unsigned int	r;
 	unsigned int	g;

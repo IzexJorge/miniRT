@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 19:49:06 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 21:10:53 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:25:46 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t)
 	return (1);
 }
 
-void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit)
+void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 {
 	t_sphere	*sp;
 	t_list		*node;
