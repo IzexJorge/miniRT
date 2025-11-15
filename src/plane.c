@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:33:25 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/15 11:05:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_intersect_plane(t_ray ray, t_plane *pl, double *t)
 	return (0);
 }
 
-void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit)
+void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 {
 	t_plane	*pl;
 	t_list	*node;

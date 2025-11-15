@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 23:24:58 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/15 11:05:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,15 +201,15 @@ t_vec3	ft_get_ray_direction(int x, int y, t_camera *cam);
 
 /* -------◊	SPHERE	◊------- */
 int		ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t);
-void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit);
+void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 /* -------◊	PLANE	◊------- */
 int		ft_intersect_plane(t_ray ray, t_plane *pl, double *t);
-void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit);
+void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 /* -------◊	CYLINDER	◊------- */
 int		ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t);
-void	ft_search_cyl(t_ray ray, t_scene *scene, double *min_t, t_hitpoint *hit);
+void	ft_search_cyl(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 #endif

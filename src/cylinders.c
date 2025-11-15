@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinders.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:43:21 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 22:55:32 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/15 11:05:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
 	return (hit);
 }
 
-void	set_cylinder_normal(t_hitpoint *hit, t_cylinder *cy, int type)
+void	set_cylinder_normal(t_hit *hit, t_cylinder *cy, int type)
 {
 	double	m;
 	t_vec3	proj;
@@ -124,7 +124,7 @@ void	set_cylinder_normal(t_hitpoint *hit, t_cylinder *cy, int type)
 }
 
 void	ft_search_cyl(t_ray ray, t_scene *scene,
-		double *min_t, t_hitpoint *hit)
+		double *min_t, t_hit *hit)
 {
 	t_cylinder	*cy;
 	t_list		*node;
