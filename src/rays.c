@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   primary_ray.c                                      :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 23:16:31 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/18 00:10:08 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,35 @@ void	ft_init_camera(t_camera *cam)
 	printf("Camera Focal Length: %f\n", cam->focal_len);
 }
 
-t_vec3	ft_get_ray_direction(int x, int y, t_camera *cam)
+t_vec3	ft_cam_ray_direction(int x, int y, t_camera *cam)
 {
-	t_vec3	dir;
-	t_vec3	right_scaled;
-	t_vec3	up_scaled;
-	t_vec3	forward_scaled;
 	double	x_cam;
 	double	y_cam;
+	t_vec3	dir;
 
 	x_cam = (x + 0.5) - (WIN_WIDTH / 2.0);
 	y_cam = (WIN_HEIGHT / 2.0) - (y + 0.5);
-	right_scaled = vec3_scale(cam->right, x_cam);
-	up_scaled = vec3_scale(cam->up, y_cam);
-	forward_scaled = vec3_scale(cam->forward, cam->focal_len);
-	dir = vec3_add(right_scaled, vec3_add(up_scaled, forward_scaled));
+	dir = vec3_add(vec3_scale(cam->right, x_cam),
+			vec3_add(vec3_scale(cam->up, y_cam),
+				vec3_scale(cam->forward, cam->focal_len)));
 	return (vec3_normalize(dir));
 }
 
+int	ft_is_shadowed(t_hit hit, t_scene *scene)
+{
+	t_ray	shadow;
+	t_hit	cast;
+	double	maxdist;
+
+	shadow.dir = vec3_normalize(vec3_sub(scene->light->coord, hit.point));
+	shadow.origin = vec3_add(hit.point, vec3_scale(hit.normal, SHADOW_BIAS));
+	maxdist = vec3_length(vec3_sub(scene->light->coord, hit.point));
+	cast.type = 0;
+	cast.t = 0;
+	scene->shadow_mode = 1;
+	ft_search_planes(shadow, scene, &maxdist, &cast);
+	ft_search_spheres(shadow, scene, &maxdist, &cast);
+	ft_search_cyl(shadow, scene, &maxdist, &cast);
+	scene->shadow_mode = 0;
+	return (cast.type != 0);
+}

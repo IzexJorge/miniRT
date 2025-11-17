@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/15 11:05:36 by jescuder         ###   ########.fr       */
+/*   Updated: 2025/11/18 00:37:32 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 #  define M_PI 3.14159265358979323846
 # endif
 # define EPSILON 1e-8
-# define WIN_WIDTH 500
-# define WIN_HEIGHT 500
+# define SHADOW_BIAS 1e-3
+# define WIN_WIDTH 1080
+# define WIN_HEIGHT 1080
 
 typedef struct s_vec3
 {
@@ -114,6 +115,7 @@ typedef struct s_scene
 	int			num_planes;
 	int			num_spheres;
 	int			num_cylinders;
+	int			shadow_mode;
 }				t_scene;
 
 typedef struct s_image
@@ -188,7 +190,7 @@ double	vec3_dot(t_vec3 a, t_vec3 b);
 /* -------◊	MATH	◊------- */
 double	ft_clamp(double value);
 t_vec3	vec3_mul(t_vec3 a, t_vec3 b);
-int		ft_solve_quadratic(double a, double b, double c, double *t0, double *t1);
+int		ft_solve_quadratic(double a, double b, double c, double *t);
 
 /* -------◊	RENDER	◊------- */
 void	ft_render_image(t_image *img, t_scene *scene);
@@ -197,7 +199,8 @@ t_color	ft_trace_ray(t_ray ray, t_scene *scene);
 t_color	ft_shade(t_ray ray, t_scene *scene, t_hit *hit);
 
 void	ft_init_camera(t_camera *cam);
-t_vec3	ft_get_ray_direction(int x, int y, t_camera *cam);
+t_vec3	ft_cam_ray_direction(int x, int y, t_camera *cam);
+int		ft_is_shadowed(t_hit hit, t_scene *scene);
 
 /* -------◊	SPHERE	◊------- */
 int		ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t);
@@ -205,11 +208,14 @@ void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 /* -------◊	PLANE	◊------- */
 int		ft_intersect_plane(t_ray ray, t_plane *pl, double *t);
+int		intersect_disk(t_ray ray, t_cylinder *cy, t_vec3 center, double *t);
 void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 /* -------◊	CYLINDER	◊------- */
+int		is_inside_height(t_cylinder *cy, t_vec3 hit);
+int		intersect_body(t_ray ray, t_cylinder *cy, double *t);
 int		ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t);
+void	set_cylinder_normal(t_hit *hit, t_cylinder *cy, int type);
 void	ft_search_cyl(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
-void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit);
 
 #endif
