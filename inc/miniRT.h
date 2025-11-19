@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/18 00:37:32 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:33:46 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # endif
 # define EPSILON 1e-8
 # define SHADOW_BIAS 1e-3
-# define WIN_WIDTH 1080
+# define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
 typedef struct s_vec3
@@ -199,7 +199,7 @@ t_color	ft_trace_ray(t_ray ray, t_scene *scene);
 t_color	ft_shade(t_ray ray, t_scene *scene, t_hit *hit);
 
 void	ft_init_camera(t_camera *cam);
-t_vec3	ft_cam_ray_direction(int x, int y, t_camera *cam);
+t_vec3	ft_cam_ray_direction(double x, double y, t_camera *cam);
 int		ft_is_shadowed(t_hit hit, t_scene *scene);
 
 /* -------◊	SPHERE	◊------- */

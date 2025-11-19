@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:27:11 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 01:12:57 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:40:26 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_parse_field_of_view(char *input, int line, double *fov)
 		ft_err_field(line, "Field of View", "Out of range [0, 180]");
 		return (2);
 	}
-	else if(err_code == 2)
+	else if (err_code == 2)
 	{
 		ft_err_field(line, "Field of View", "Incorrect character in integer");
 		return (2);
@@ -86,7 +86,7 @@ int	ft_parse_color_value(char *input, int line, double *color)
 		ft_err_field(line, "Color", "Out of range [0, 255]");
 		return (2);
 	}
-	else if(err_code == 2)
+	else if (err_code == 2)
 	{
 		ft_err_field(line, "Color", "Incorrect character in integer");
 		return (2);

@@ -6,7 +6,7 @@
 /*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 23:16:31 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/18 00:10:08 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:43:32 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,16 @@ void	ft_init_camera(t_camera *cam)
 	cam->up = vec3_cross(cam->forward, cam->right);
 	cam->fov_rad = (cam->fov * M_PI) / 180.0;
 	cam->focal_len = (WIN_WIDTH / 2.0) / tan(cam->fov_rad / 2.0);
-	printf ("CAMERA TAN FOV: %f\n", tan((cam->fov_rad / 2.0) * 10));
-	printf("Camera Focal Length: %f\n", cam->focal_len);
 }
 
-t_vec3	ft_cam_ray_direction(int x, int y, t_camera *cam)
+t_vec3	ft_cam_ray_direction(double sx, double sy, t_camera *cam)
 {
 	double	x_cam;
 	double	y_cam;
 	t_vec3	dir;
 
-	x_cam = (x + 0.5) - (WIN_WIDTH / 2.0);
-	y_cam = (WIN_HEIGHT / 2.0) - (y + 0.5);
+	x_cam = (sx - (WIN_WIDTH / 2.0));
+	y_cam = ((WIN_HEIGHT / 2.0) - sy);
 	dir = vec3_add(vec3_scale(cam->right, x_cam),
 			vec3_add(vec3_scale(cam->up, y_cam),
 				vec3_scale(cam->forward, cam->focal_len)));
