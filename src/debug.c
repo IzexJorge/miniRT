@@ -5,7 +5,7 @@ static void	ft_debug_plane(void *plane_void)
 {
 	t_plane	*plane = plane_void;
 	t_vec3	coord = plane->coord;
-	t_vec3	orient = plane->orient;
+	t_vec3	orient = plane->normal;
 	t_color	color = plane->color;
 	printf("Plane: %g,%g,%g  %g,%g,%g  %g,%g,%g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, color.x, color.y, color.z);
 }
@@ -23,7 +23,7 @@ static void	ft_debug_cylinder(void *cylinder_void)
 {
 	t_cylinder	*cylinder = cylinder_void;
 	t_vec3		coord = cylinder->coord;
-	t_vec3		orient = cylinder->orient;
+	t_vec3		orient = cylinder->axis;
 	double		diameter = cylinder->diameter;
 	double		height = cylinder->height;
 	t_color		color = cylinder->color;
@@ -36,7 +36,7 @@ void	ft_debug(t_scene *scene)
 	printf("Escena correcta.\n");
 	t_camera	*camera = scene->camera;
 	t_vec3		coord = camera->coord;
-	t_vec3		orient = camera->orient;
+	t_vec3		orient = camera->forward;
 	double		fov = camera->fov;
 	printf("Camera: %g,%g,%g  %g,%g,%g  %g\n", coord.x, coord.y, coord.z, orient.x, orient.y, orient.z, fov);
 

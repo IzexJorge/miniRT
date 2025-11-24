@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:15:32 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/24 08:46:52 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_parse_plane(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_coord(line_inputs[1], line, &plane->coord);
 	if (err_code > 0)
 		return (err_code);
-	err_code = ft_parse_orient(line_inputs[2], line, &plane->orient);
+	err_code = ft_parse_orient(line_inputs[2], line, &plane->normal);
 	if (err_code > 0)
 		return (err_code);
 	err_code = ft_parse_color(line_inputs[3], line, &plane->color);
@@ -113,7 +113,7 @@ int	ft_parse_cylinder(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_coord(line_inputs[1], line, &cylinder->coord);
 	if (err_code > 0)
 		return (err_code);
-	err_code = ft_parse_orient(line_inputs[2], line, &cylinder->orient);
+	err_code = ft_parse_orient(line_inputs[2], line, &cylinder->axis);
 	if (err_code > 0)
 		return (err_code);
 	if (ft_parse_decimal(line_inputs[3], line, "Diameter", &cylinder->diameter))

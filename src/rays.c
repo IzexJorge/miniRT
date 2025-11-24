@@ -3,44 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 23:16:31 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/19 15:43:32 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/24 10:02:13 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	ft_init_camera(t_camera *cam)
-{
-	t_vec3	world_up;
-
-	world_up = (t_vec3){0, 1, 0};
-	cam->forward = vec3_normalize(cam->orient);
-	if (fabs(vec3_dot(cam->forward, world_up)) > 0.999)
-		world_up = (t_vec3){1, 0, 0};
-	cam->right = vec3_normalize(vec3_cross(world_up, cam->forward));
-	cam->up = vec3_cross(cam->forward, cam->right);
-	cam->fov_rad = (cam->fov * M_PI) / 180.0;
-	cam->focal_len = (WIN_WIDTH / 2.0) / tan(cam->fov_rad / 2.0);
-}
-
-t_vec3	ft_cam_ray_direction(double sx, double sy, t_camera *cam)
-{
-	double	x_cam;
-	double	y_cam;
-	t_vec3	dir;
-
-	x_cam = (sx - (WIN_WIDTH / 2.0));
-	y_cam = ((WIN_HEIGHT / 2.0) - sy);
-	dir = vec3_add(vec3_scale(cam->right, x_cam),
-			vec3_add(vec3_scale(cam->up, y_cam),
-				vec3_scale(cam->forward, cam->focal_len)));
-	return (vec3_normalize(dir));
-}
-
-int	ft_is_shadowed(t_hit hit, t_scene *scene)
+static int	ft_is_shadowed(t_hit hit, t_scene *scene)
 {
 	t_ray	shadow;
 	t_hit	cast;
@@ -57,4 +29,66 @@ int	ft_is_shadowed(t_hit hit, t_scene *scene)
 	ft_search_cyl(shadow, scene, &maxdist, &cast);
 	scene->shadow_mode = 0;
 	return (cast.type != 0);
+}
+
+static t_color	ft_shade(t_ray ray, t_scene *scene, t_hit *hit)
+{
+	int		is_shadowed;
+	t_color	color;
+	t_vec3	light_dir;
+	t_vec3	amb_light;
+	double	intensity;
+
+	(void)ray;
+	amb_light = vec3_scale(scene->ambient->color, scene->ambient->ratio);
+	color = vec3_mul(hit->color, amb_light);
+	light_dir = vec3_normalize(vec3_sub(scene->light->coord, hit->point));
+	intensity = ft_clamp(vec3_dot(hit->normal,
+				light_dir)) * scene->light->ratio;
+	is_shadowed = ft_is_shadowed(*hit, scene);
+	color.x += hit->color.x * intensity * !is_shadowed;
+	color.y += hit->color.y * intensity * !is_shadowed;
+	color.z += hit->color.z * intensity * !is_shadowed;
+	return (color);
+}
+
+static t_color	ft_trace_ray(t_ray ray, t_scene *scene)
+{
+	t_color	color;
+	t_hit	hit;
+	double	min_t;
+
+	min_t = DBL_MAX;
+	hit.type = 0;
+	hit.point = (t_vec3){0.0, 0.0, 0.0};
+	hit.normal = (t_vec3){0.0, 0.0, 0.0};
+	hit.t = 0.0;
+	scene->shadow_mode = 0;
+	ft_search_planes(ray, scene, &min_t, &hit);
+	ft_search_spheres(ray, scene, &min_t, &hit);
+	ft_search_cyl(ray, scene, &min_t, &hit);
+	if (hit.type != 0)
+		color = ft_shade(ray, scene, &hit);
+	else
+		color = vec3_scale(scene->ambient->color, scene->ambient->ratio);
+	return (color);
+}
+
+t_color	ft_get_pixel_color(double img_x, double img_y, t_scene *scene)
+{
+	double		x_center_offset;
+	double		y_center_offset;
+	t_camera	*cam;
+	t_vec3		dir;
+	t_ray		ray;
+
+	x_center_offset = (img_x - (WIN_WIDTH / 2.0));
+	y_center_offset = ((WIN_HEIGHT / 2.0) - img_y);
+	cam = scene->camera;
+	ray.origin = cam->coord;
+	dir = vec3_add(vec3_scale(cam->right, x_center_offset),
+			vec3_add(vec3_scale(cam->up, y_center_offset),
+				cam->focal_vector));
+	ray.dir = vec3_normalize(dir);
+	return (ft_trace_ray(ray, scene));
 }

@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   cylinders.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:43:21 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/18 00:34:13 by jose-jim         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:32:28 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	is_inside_height(t_cylinder *cy, t_vec3 hit)
+static int	is_inside_height(t_cylinder *cy, t_vec3 hit)
 {
 	t_vec3	v;
 	double	m;
 
 	v = vec3_sub(hit, cy->coord);
-	m = vec3_dot(v, cy->orient);
+	m = vec3_dot(v, cy->axis);
 	return (ft_is_greater_equal(m, -cy->height * 0.5)
 		&& ft_is_less_equal(m, cy->height * 0.5));
 }
 
-int	intersect_body(t_ray ray, t_cylinder *cy, double *t)
+static int	intersect_body(t_ray ray, t_cylinder *cy, double *t)
 {
 	t_vec3	oc;
 	t_vec3	hit;
@@ -32,10 +32,10 @@ int	intersect_body(t_ray ray, t_cylinder *cy, double *t)
 	double	c;
 
 	oc = vec3_sub(ray.origin, cy->coord);
-	a = vec3_dot(ray.dir, ray.dir) - pow(vec3_dot(ray.dir, cy->orient), 2);
-	b = 2 * (vec3_dot(oc, ray.dir) - vec3_dot(ray.dir, cy->orient)
-			* vec3_dot(oc, cy->orient));
-	c = vec3_dot(oc, oc) - pow(vec3_dot(oc, cy->orient), 2)
+	a = vec3_dot(ray.dir, ray.dir) - pow(vec3_dot(ray.dir, cy->axis), 2);
+	b = 2 * (vec3_dot(oc, ray.dir) - vec3_dot(ray.dir, cy->axis)
+			* vec3_dot(oc, cy->axis));
+	c = vec3_dot(oc, oc) - pow(vec3_dot(oc, cy->axis), 2)
 		- pow(cy->diameter * 0.5, 2);
 	if (!ft_solve_quadratic(a, b, c, t))
 		return (0);
@@ -45,7 +45,7 @@ int	intersect_body(t_ray ray, t_cylinder *cy, double *t)
 	return (1);
 }
 
-int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
+static int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
 {
 	double	t_body;
 	double	t_cap;
@@ -53,8 +53,8 @@ int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
 	t_vec3	top;
 	t_vec3	bot;
 
-	top = vec3_add(cy->coord, vec3_scale(cy->orient, cy->height * 0.5));
-	bot = vec3_add(cy->coord, vec3_scale(cy->orient, -cy->height * 0.5));
+	top = vec3_add(cy->coord, vec3_scale(cy->axis, cy->height * 0.5));
+	bot = vec3_add(cy->coord, vec3_scale(cy->axis, -cy->height * 0.5));
 	hit = 0;
 	if (intersect_body(ray, cy, &t_body))
 	{
@@ -74,7 +74,7 @@ int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
 	return (hit);
 }
 
-void	set_cylinder_normal(t_hit *hit, t_cylinder *cy, int type)
+static void	set_cylinder_normal(t_hit *hit, t_cylinder *cy, int type)
 {
 	double	m;
 	t_vec3	proj;
@@ -83,18 +83,17 @@ void	set_cylinder_normal(t_hit *hit, t_cylinder *cy, int type)
 	if (type == 1)
 	{
 		v = vec3_sub(hit->point, cy->coord);
-		m = vec3_dot(v, cy->orient);
-		proj = vec3_add(cy->coord, vec3_scale(cy->orient, m));
+		m = vec3_dot(v, cy->axis);
+		proj = vec3_add(cy->coord, vec3_scale(cy->axis, m));
 		hit->normal = vec3_normalize(vec3_sub(hit->point, proj));
 	}
 	if (type == 2)
-		hit->normal = cy->orient;
+		hit->normal = cy->axis;
 	if (type == 3)
-		hit->normal = vec3_scale(cy->orient, -1);
+		hit->normal = vec3_scale(cy->axis, -1);
 }
 
-void	ft_search_cyl(t_ray ray, t_scene *scene,
-		double *min_t, t_hit *hit)
+void	ft_search_cyl(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 {
 	t_cylinder	*cy;
 	t_list		*node;
