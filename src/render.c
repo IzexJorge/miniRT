@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/24 09:56:16 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:50:21 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	ft_render_image(t_image *img, t_scene *scene)
 	char	*pixel_addr;
 	int		bytes_per_pixel;
 
-	pixel_addr = img->data;
 	bytes_per_pixel = img->bits_per_pixel / 8;
 	ft_init_camera(scene->camera);
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
+		pixel_addr = img->data + y * img->line_bytes;
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
