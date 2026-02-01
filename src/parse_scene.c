@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/24 08:40:26 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/01 16:09:17 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static int	ft_parse_scene_internal(char **lines, t_scene *scene)
 	line = 0;
 	while (lines[line])
 	{
+		ft_tabs_to_spaces(lines[line]);
 		line_inputs = ft_split(lines[line], ' ');
 		if (line_inputs == NULL)
 			return (perror("error"), 1);

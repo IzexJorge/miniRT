@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 21:53:21 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/07 19:51:46 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/01 16:08:32 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 size_t	ft_str_arraylen(char **array);
 char	**ft_str_subarray(char **array, size_t start, size_t len);
 char	**ft_free_str_array(char **array);
+void	ft_tabs_to_spaces(char *str);
 
 /* -------◊		FUNCTIONS TO MANIPULATE MEMORY	◊------- */
 void	ft_bzero(void *s, size_t n);
