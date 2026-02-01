@@ -6,22 +6,38 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2026/01/30 18:50:21 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/01/30 19:02:03 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+// static void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color)
+// {
+// 	unsigned int	r;
+// 	unsigned int	g;
+// 	unsigned int	b;
+
+// 	r = (unsigned int)(ft_clamp(color.x) * 255.0);
+// 	g = (unsigned int)(ft_clamp(color.y) * 255.0);
+// 	b = (unsigned int)(ft_clamp(color.z) * 255.0);
+// 	*(uint32_t *)pixel_addr = (r << 16) | (g << 8) | b;
+// }
+
 static void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color)
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 
-	r = (unsigned int)(ft_clamp(color.x) * 255.0);
-	g = (unsigned int)(ft_clamp(color.y) * 255.0);
-	b = (unsigned int)(ft_clamp(color.z) * 255.0);
-	*(uint32_t *)pixel_addr = (r << 16) | (g << 8) | b;
+	r = (unsigned char)(ft_clamp(color.x) * 255.0);
+	g = (unsigned char)(ft_clamp(color.y) * 255.0);
+	b = (unsigned char)(ft_clamp(color.z) * 255.0);
+
+	pixel_addr[0] = b;      // Blue
+	pixel_addr[1] = g;      // Green
+	pixel_addr[2] = r;      // Red
+	pixel_addr[3] = 255;    // Alpha (si existe)
 }
 
 static void	ft_init_camera(t_camera *cam)
