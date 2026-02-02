@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 20:26:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 20:47:58 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 00:08:49 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_is_zero(double a)
 {
-	return (fabs(a) < EPSILON);
+	return (fabs(a) <= EPSILON);
 }
