@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/24 09:59:33 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:24:41 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,6 @@ typedef struct s_scene
 	t_list		*planes;
 	t_list		*spheres;
 	t_list		*cylinders;
-	int			num_planes;
-	int			num_spheres;
-	int			num_cylinders;
 	int			shadow_mode;
 }				t_scene;
 
@@ -165,9 +162,6 @@ double	ft_max_dec(char *field);
 void	ft_err_line(int line, char *message);
 void	ft_err_field(int line, char *field, char *message);
 void	ft_err_free(char *message, int line, char **array);
-
-//TODO QUITAR
-void ft_debug(t_scene *scene);
 
 /* -------◊	VECTORS	◊------- */
 t_vec3	vec3_new(double x, double y, double z);

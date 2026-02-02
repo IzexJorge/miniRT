@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:15:32 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/24 08:46:52 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:25:21 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	ft_parse_plane(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_color(line_inputs[3], line, &plane->color);
 	if (err_code > 0)
 		return (err_code);
-	scene->num_planes++;
 	return (0);
 }
 
@@ -95,7 +94,6 @@ int	ft_parse_sphere(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_color(line_inputs[3], line, &sphere->color);
 	if (err_code > 0)
 		return (err_code);
-	scene->num_spheres++;
 	return (0);
 }
 
@@ -123,6 +121,5 @@ int	ft_parse_cylinder(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_color(line_inputs[5], line, &cylinder->color);
 	if (err_code > 0)
 		return (err_code);
-	scene->num_cylinders++;
 	return (0);
 }

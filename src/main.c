@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:06:09 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/19 15:33:59 by jose-jim         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:26:40 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	main(int argc, char *argv[])
 	ft_memset(&scene, 0, sizeof(t_scene));
 	if (ft_parse_scene(argv[1], &scene))
 		return (ft_free_scene(&scene), 1);
-	ft_debug(&scene);//TODO QUITAR Provisional, para parseo.
 	if (ft_init_mlx(&mlx, &img))
 		return (ft_free_all(&scene, mlx, &img), 1);
 	ft_render_image(&img, &scene);
