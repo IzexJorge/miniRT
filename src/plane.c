@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:33:25 by jose-jim          #+#    #+#             */
-/*   Updated: 2026/02/02 00:53:08 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 01:13:26 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	intersect_disk(t_ray ray, t_cylinder *cy, t_vec3 center, double *t)
 	if (ft_is_zero(denom))
 		return (0);
 	tmp = vec3_dot(vec3_sub(center, ray.origin), cy->axis) / denom;
-	if (tmp < 0.0 || ft_is_zero(tmp))
+	if (!ft_is_greater(tmp, 0.0))
 		return (0);
 	hit = vec3_add(ray.origin, vec3_scale(ray.dir, tmp));
 	cp = vec3_sub(hit, center);
@@ -45,9 +45,7 @@ static int	ft_intersect_plane(t_ray ray, t_plane *pl, double *t)
 		return (0);
 	p0r0 = vec3_sub(pl->coord, ray.origin);
 	*t = vec3_dot(p0r0, pl->normal) / denom;
-	if (*t < 0.0 || ft_is_zero(*t))
-		return (0);
-	return (1);
+	return (ft_is_greater(*t, 0.0));
 }
 
 void	ft_search_planes(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
