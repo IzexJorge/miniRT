@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 19:49:06 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/19 14:07:46 by jose-jim         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:52:48 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_intersect_sphere(t_ray ray, t_sphere *sp, double *t)
 	oc = vec3_sub(ray.origin, sp->coord);
 	b = 2.0 * vec3_dot(oc, ray.dir);
 	c = vec3_dot(oc, oc) - (sp->diameter / 2) * (sp->diameter / 2);
-	return (ft_solve_quadratic(1, b, c, t));
+	return (ft_solve_quadratic(1.0, b, c, t));
 }
 
 void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
@@ -30,14 +30,11 @@ void	ft_search_spheres(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 	t_list		*node;
 	double		t;
 
-	if (scene->num_spheres == 0)
-		return ;
 	node = scene->spheres;
 	while (node)
 	{
 		sp = node->content;
-		if (ft_intersect_sphere(ray, sp, &t)
-			&& ft_is_less(t, *min_t))
+		if (ft_intersect_sphere(ray, sp, &t) && t < *min_t)
 		{
 			*min_t = t;
 			hit->type = 's';

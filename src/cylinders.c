@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:43:21 by jose-jim          #+#    #+#             */
-/*   Updated: 2025/11/24 09:32:28 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:39:40 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	intersect_body(t_ray ray, t_cylinder *cy, double *t)
 
 	oc = vec3_sub(ray.origin, cy->coord);
 	a = vec3_dot(ray.dir, ray.dir) - pow(vec3_dot(ray.dir, cy->axis), 2);
+	if (ft_is_zero(a))
+		return (0);
 	b = 2 * (vec3_dot(oc, ray.dir) - vec3_dot(ray.dir, cy->axis)
 			* vec3_dot(oc, cy->axis));
 	c = vec3_dot(oc, oc) - pow(vec3_dot(oc, cy->axis), 2)
@@ -61,12 +63,12 @@ static int	ft_intersect_cylinder(t_ray ray, t_cylinder *cy, double *t)
 		*t = t_body;
 		hit = 1;
 	}
-	if (intersect_disk(ray, cy, top, &t_cap) && (!hit || ft_is_less(t_cap, *t)))
+	if (intersect_disk(ray, cy, top, &t_cap) && (!hit || t_cap < *t))
 	{
 		*t = t_cap;
 		hit = 2;
 	}
-	if (intersect_disk(ray, cy, bot, &t_cap) && (!hit || ft_is_less(t_cap, *t)))
+	if (intersect_disk(ray, cy, bot, &t_cap) && (!hit || t_cap < *t))
 	{
 		*t = t_cap;
 		hit = 3;
@@ -105,7 +107,7 @@ void	ft_search_cyl(t_ray ray, t_scene *scene, double *min_t, t_hit *hit)
 	{
 		cy = node->content;
 		type = ft_intersect_cylinder(ray, cy, &t);
-		if (type && ft_is_less(t, *min_t))
+		if (type && t < *min_t)
 		{
 			*min_t = t;
 			hit->type = 'c';
