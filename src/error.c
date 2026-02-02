@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:46:59 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/06 19:11:05 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:27:00 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ void	ft_err_free(char *message, int line, char **array)
 {
 	ft_err_line(line, message);
 	ft_free_str_array(array);
+}
+
+int		ft_check_rt_extension(char *filename)
+{
+	size_t	len;
+
+	len	= ft_strlen(filename);
+	if (len < 3 || ft_strcmp(filename + len - 3, ".rt"))
+	{
+		ft_err("The file must have the .rt extension");
+		return (1);
+	}
+	return (0);
 }

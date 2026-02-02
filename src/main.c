@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:06:09 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/02 22:26:40 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:19:44 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	main(int argc, char *argv[])
 		ft_err("The only argument must be a .rt file");
 		return (1);
 	}
+	if (ft_check_rt_extension(argv[1]))
+		return (1);
 	ft_memset(&scene, 0, sizeof(t_scene));
 	if (ft_parse_scene(argv[1], &scene))
 		return (ft_free_scene(&scene), 1);

@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/02 22:24:41 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:25:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ double	ft_max_dec(char *field);
 void	ft_err_line(int line, char *message);
 void	ft_err_field(int line, char *field, char *message);
 void	ft_err_free(char *message, int line, char **array);
+int		ft_check_rt_extension(char *filename);
 
 /* -------◊	VECTORS	◊------- */
 t_vec3	vec3_new(double x, double y, double z);
