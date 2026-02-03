@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:44:16 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/03 02:38:47 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:16:24 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,22 +108,17 @@ int	ft_parse_decimal(char *input, int line, char *field, double *var)
 	if (err_code > 0)
 	{
 		if (err_code == 1)
-		{
-			if (!ft_strcmp(field, "Ratio"))
-				ft_err_field(line, field, "Out of range [0.0, 1.0]");
-			else if (!ft_strcmp(field, "Orientation"))
-				ft_err_field(line, field, "Out of range [-1.0, 1.0]");
-			else if (!ft_strcmp(field, "Coordinates"))
-				ft_err_field(line, field, "Out of range [-10000.0, 10000.0]");
-			else
-				ft_err_field(line, field, "Out of range (0.0, 10000.0]");
-		}
+			ft_err_range(line, field);
 		else if (err_code == 2)
 			ft_err_field(line, field,
 				"Fractional part is smaller than the internal precision(1e-8)");
 		else if (err_code == 3)
-			ft_err_field(line, field, "Incorrect character in decimal");
+			ft_err_field(line, field, "Incorrect character in number");
 		return (2);
 	}
+	if (!ft_strcmp(field, "Color"))
+		*var = *var / 255.0;
+	if (!ft_strcmp(field, "FOV"))
+		*var = *var * M_PI / 180.0;
 	return (0);
 }

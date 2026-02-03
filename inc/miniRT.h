@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/03 09:53:39 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:02:55 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,6 @@ int		ft_parse_cylinder(char **line_inputs, int line, t_scene *scene);
 int		ft_parse_color(char *input, int line, t_color *color);
 int		ft_parse_coord(char *input, int line, t_vec3 *coordinates);
 int		ft_parse_orient(char *input, int line, t_vec3 *orient);
-
-int		ft_parse_field_of_view(char *input, int line, double *fov);
-int		ft_parse_color_value(char *input, int line, double *color);
 int		ft_parse_decimal(char *input, int line, char *field, double *var);
 
 double	ft_min_dec(char *field);
@@ -161,6 +158,7 @@ double	ft_max_dec(char *field);
 void	ft_err_line(int line, char *message);
 void	ft_err_field(int line, char *field, char *message);
 void	ft_err_free(char *message, int line, char **array);
+void	ft_err_range(int line, char *field);
 int		ft_check_rt_extension(char *filename);
 
 /* -------◊	VECTORS	◊------- */

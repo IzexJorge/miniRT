@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:46:59 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/03 02:48:05 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:49:33 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ void	ft_err_free(char *message, int line, char **array)
 {
 	ft_err_line(line, message);
 	ft_free_str_array(array);
+}
+
+void	ft_err_range(int line, char *field)
+{
+	if (!ft_strcmp(field, "Ratio"))
+		ft_err_field(line, field, "Out of range [0, 1]");
+	else if (!ft_strcmp(field, "Orientation"))
+		ft_err_field(line, field, "Out of range [-1, 1]");
+	else if (!ft_strcmp(field, "Coordinates"))
+		ft_err_field(line, field, "Out of range [-10000, 10000]");
+	else if (!ft_strcmp(field, "Color"))
+		ft_err_field(line, field, "Out of range [0, 255]");
+	else if (!ft_strcmp(field, "FOV"))
+		ft_err_field(line, field, "Out of range [0, 180]");
+	else
+		ft_err_field(line, field, "Out of range (0, 10000]");
 }
 
 int	ft_check_rt_extension(char *filename)

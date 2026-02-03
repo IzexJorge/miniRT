@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_value_sets.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:06:37 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/14 22:39:24 by jose-jim         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:01:21 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	ft_parse_color(char *input, int line, t_color *color)
 		return (perror("error"), 1);
 	if (ft_str_arraylen(values) != 3)
 		return (ft_err_free("Color needs 3 values", line, values), 2);
-	if (ft_parse_color_value(values[0], line, &color->x))
+	if (ft_parse_decimal(values[0], line, "Color", &color->x))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_color_value(values[1], line, &color->y))
+	if (ft_parse_decimal(values[1], line, "Color", &color->y))
 		return (ft_free_str_array(values), 2);
-	if (ft_parse_color_value(values[2], line, &color->z))
+	if (ft_parse_decimal(values[2], line, "Color", &color->z))
 		return (ft_free_str_array(values), 2);
 	return (ft_free_str_array(values), 0);
 }

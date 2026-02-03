@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:49:30 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/01 16:09:17 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:58:51 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_parse_camera(char **line_inputs, int line, t_scene *scene)
 	err_code = ft_parse_orient(line_inputs[2], line, &camera->forward);
 	if (err_code > 0)
 		return (err_code);
-	if (ft_parse_field_of_view(line_inputs[3], line, &camera->fov))
+	if (ft_parse_decimal(line_inputs[3], line, "FOV", &camera->fov))
 		return (2);
 	return (0);
 }
