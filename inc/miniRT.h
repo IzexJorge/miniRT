@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <sys/time.h>
-# include <float.h>
 # include <stdint.h>
 # include <math.h>
 
@@ -29,6 +28,7 @@
 # define SHADOW_BIAS 1e-3
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define DBL_MAX 1.7976931348623157e+308
 
 typedef struct s_vec3
 {
