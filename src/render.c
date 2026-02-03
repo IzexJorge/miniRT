@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/02 13:31:33 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:16:36 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static void	ft_init_camera(t_camera *cam)
 		world_up = (t_vec3){1, 0, 0};
 	cam->right = vec3_normalize(vec3_cross(world_up, cam->forward));
 	cam->up = vec3_cross(cam->forward, cam->right);
+	if (cam->fov < EPSILON)
+		cam->fov = EPSILON;
+	else if (cam->fov > M_PI - EPSILON)
+		cam->fov = M_PI - EPSILON;
 	focal_len = (WIN_WIDTH / 2.0) / tan(cam->fov / 2.0);
 	cam->focal_vector = vec3_scale(cam->forward, focal_len);
 }
