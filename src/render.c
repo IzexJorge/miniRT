@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose-jim <jose-jim@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:08:24 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/03 13:16:36 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:10:10 by jose-jim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_set_pixel_color_bytes(char *pixel_addr, t_color color)
 	pixel_addr[0] = b;
 	pixel_addr[1] = g;
 	pixel_addr[2] = r;
-	pixel_addr[3] = 255;
+	pixel_addr[3] = (unsigned char)255;
 }
 
 static void	ft_init_camera(t_camera *cam)
