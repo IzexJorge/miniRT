@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:02:26 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/02 23:25:36 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 09:53:39 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <sys/time.h>
 # include <float.h>
-# include <errno.h>
 # include <stdint.h>
 # include <math.h>
 

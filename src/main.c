@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:06:09 by jescuder          #+#    #+#             */
-/*   Updated: 2026/02/02 23:19:44 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 09:54:02 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,13 @@ static int	ft_init_mlx(void **mlx, t_image *img)
 	if (*mlx == NULL)
 	{
 		img->inner = NULL;
-		if (errno)
-			perror("error");
-		else
-			ft_err("mlx_init failed");
+		ft_err("mlx_init failed");
 		return (1);
 	}
 	img->inner = mlx_new_image(*mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (img->inner == NULL)
 	{
-		if (errno)
-			perror("error");
-		else
-			ft_err("mlx_new_image failed");
+		ft_err("mlx_new_image failed");
 		return (1);
 	}
 	img->data = mlx_get_data_addr(
