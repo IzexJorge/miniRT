@@ -6,7 +6,7 @@
 /*   By: jescuder <jescuder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:44:16 by jescuder          #+#    #+#             */
-/*   Updated: 2025/11/07 19:29:06 by jescuder         ###   ########.fr       */
+/*   Updated: 2026/02/03 02:38:47 by jescuder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ static int	ft_internal(char *input, double *var, double min, double max)
 	if (*input != '\0')
 		return (3);
 	result *= sign;
+	if (min == -2.0 && ft_is_less_equal(result, 0.0))
+		return (1);
 	if (ft_is_less(result, min))
 		return (1);
 	*var = result;
@@ -111,8 +113,10 @@ int	ft_parse_decimal(char *input, int line, char *field, double *var)
 				ft_err_field(line, field, "Out of range [0.0, 1.0]");
 			else if (!ft_strcmp(field, "Orientation"))
 				ft_err_field(line, field, "Out of range [-1.0, 1.0]");
-			else
+			else if (!ft_strcmp(field, "Coordinates"))
 				ft_err_field(line, field, "Out of range [-10000.0, 10000.0]");
+			else
+				ft_err_field(line, field, "Out of range (0.0, 10000.0]");
 		}
 		else if (err_code == 2)
 			ft_err_field(line, field,

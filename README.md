@@ -48,8 +48,9 @@ There can be any number of spheres, planes or cylinders.
 The order of the elements doesn't have any effect.  
 The order and presence of the attributes of each element is mandatory.  
 Coordinates (x,y,z), diameter and height have a range of [-10000.0, 10000.0].  
+Diameter and height have a range of (0.0, 10000.0].  
 Orientation vectors (a,b,c) **must be normalized** and their axis values have a range of [-1.0, 1.0].  
-Normalized means the vector length is exactly 1. The length formula is √(a² + b² + c²). The easiest way is to set one of the axis values to 1 and the rest to 0.  
+Normalized means the vector length is exactly 1. The length formula is √(a² + b² + c²). The easiest way is to set one of the axis values to 1 or -1 and the rest to 0.  
 The Ambient Lighting and Light brightness intensity ratios have a range of [0.0, 1.0].  
 Colors (r,g,b) have a range of [0, 255].  
 The FOV (Field of View) has a range of [0, 180].  
